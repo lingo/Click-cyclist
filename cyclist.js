@@ -6,13 +6,35 @@
  *
  * 		BASEURL/fetch?count=10&start=0 // Per-page and item offset.
  * 		Eg, count=10&offset=1 would give up to 10 items (less if end is reached), starting on the second item (item 1)
- * 			=> [ {content: HTML} ]
+ * 			=> [ { field: value, field: value} ]
  * 		BASEURL/count
  * 			=> 123 // TOTAL ITEMS AVAILABLE
  *
- * 	Future:
- * 		Provide a templating system so that JSON results may be returned simply, and HTML constructed on front-end.
- * 		@see http://icanhazjs.com/
+ * The results returned from the RESTish /fetch command will be used to create HTML using a template.
+ * By default a Mustache template with the ID of #slide is used.  This can be altered by passing the template variable into options.
+ *
+ * Your template should look something like the following:  (see index.html for an example)
+ *
+ *	 <script type="text/html" id="slide">
+ *	 	<h2>{{ title }}</h2>
+ *	 	<p><img src="{{ bannerImage }}" /><br/>
+ *		 	{{ content }}
+ *	 	</p>
+ *	 </script>
+ *
+ * Usage:
+ *
+ * 		$('mydiv').cyclist({
+ * 			perPage: 12,
+ * 			template: 'mydiv_template',
+ * 			baseURL: 'http://mysite.example.com/slideshowapi/'	
+ * 		});
+ *
+ * 		$('mydiv').cyclist('next'); // manually show next slide
+ * 		$('mydiv').cyclist('prev'); // manually show previous slide
+ *
+ * External code:
+ *   Uses ICanHazJS for templating: http://icanhazjs.com/
  */
 (function($) {
 	$.fn.cyclist = function(options) {
