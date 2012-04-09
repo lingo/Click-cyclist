@@ -47,11 +47,9 @@
 		};
 	
 		function initialize(T, data) {
-			console.log(options);
 			T.addClass('cyclist');
 			T.css({position: 'relative', overflow: 'hidden'});
 			var baseURL = options.baseURL || T.data('baseurl');
-			console.log(baseURL);
 			data = {
 				items:		null,
 				baseURL:	baseURL,
@@ -96,7 +94,6 @@
 			elts[0].css(prop, newd.init);
 			var newcm = {}; newcm[prop] = newd.final;
 			var oldcm = {}; oldcm[prop] = oldd.final;
-			console.log(oldd, newd);
 			data.pane = elts[0][0].className;
 			elts[1].animate(oldcm, {duration: 1000, queue: false});
 			elts[0].animate(newcm, {duration: 1000, queue: false});
@@ -131,7 +128,7 @@
 				i = data.nItems - 1;
 			}
 			if (i >= data.items.length) {
-				console.error('index >= loaded length', "This shouldn't happen with pre-loading!", data);
+				//console.error('index >= loaded length', "This shouldn't happen with pre-loading!", data);
 				return;
 			}
 			data.index = i;
@@ -147,7 +144,7 @@
 				i = 0;
 			}
 			if (i >= data.items.length) {
-				console.error('index >= loaded length', "This shouldn't happen with pre-loading!", data);
+				//console.error('index >= loaded length', "This shouldn't happen with pre-loading!", data);
 				return;
 			}
 			data.index = i;
@@ -174,18 +171,15 @@
 		}
 
 		options = $.extend(defaults, options);
-		console.log(this, options);
 		var T = $(this);
 
 		return this.each(function() {
 			var data = T.data('cyclist');
 			if (!data) {
-				console.log("Initializing");
 				initialize.apply(this, [T]);
 				addPagerButtons(T);
 			}
 			if (func) {
-				console.log('calling func', func.name);
 				func.apply(T, [data]);
 			}
 		});
