@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="style.css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="ICanHaz.min.js" type="text/javascript"></script>
+<script src="cyclist.js" type="text/javascript"></script>
+</head>
+<body>
+
+<section><h1 style="display:none">Events</h1>
+
+<div class="featured conference" style="height: 420px;" data-baseurl="http://cyclist">
+	<ul class="events">
+		<li>
+			<a href="/articles/show/festal-jasper-s/">
+			<article style="">
+				<div class="banner">
+					<img src="trees.jpg" alt="trees046.jpg">
+				</div>
+			<h2 class="before after"><a id="Article-169" href="/articles/show/festal-jasper-s/">Festal jasper's</a></h2>
+			<div class="metainfo">
+				<p class="summary">Enim nihil, consectetur laboriosam sed tempor quoditaque aute, facere odio optio molestias deserunt voluptatibus at.
+				<a class="morelink" href="/articles/show/festal-jasper-s/">MORE &gt;</a>
+				</p>
+			</div>
+			</article>
+			</a>
+		</li>
+		<li> <a rel="slide" href="api.php?id=123"></a> </li>
+		<li> <a rel="slide" href="api.php?id=234"></a> </li>
+		<li> <a rel="slide" href="api.php?id=5"></a> </li>
+		<li> <a rel="slide" href="api.php?id=7"></a> </li>
+	</ul>
+
+	</div>
+
+</section>
+
+<script type="text/html" id="slide">
+<article>
+	<div class="banner">
+		<img src="{{ image }}" alt=" {{ imageAlt }}" />
+	</div>
+	<h2>
+		<a href="{{ link }}">{{ title }}</a>
+	</h2>
+	<div class="metainfo">
+		<p class="summary">{{ content }}</p>
+		<a href="{{ link }}" class="morelink">MORE&gt;</a>
+	</div>
+</article>
+</script>
+
+<script type="text/javascript">
+	var Cyclist;
+	$(function() {
+
+		Cyclist = $('div.featured.conference').cyclist();
+
+	});
+</script>
+</body>
+</html>
