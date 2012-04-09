@@ -113,14 +113,14 @@
 		}
 
 		function addPagerButtons(T) {
-			T.append('<a href="#" id="prev" title="Previous" class="cyclist pager">&lt;</a>');
-			T.append('<a href="#" id="next" title="Next" class="cyclist pager">&gt;</a>');
+			T.append('<a href="#" id="cyclist-prev" title="Previous" class="cyclist pager">&lt;</a>');
+			T.append('<a href="#" id="cyclist-next" title="Next" class="cyclist pager">&gt;</a>');
 			$('a.cyclist.pager', T).click( function(e) {
 				e.preventDefault();
 				var T=$(this);
 				var C = T.parents('div.cyclist:first');
-				console.log(T.attr('id'), C);
-				C.cyclist(T.attr('id'));
+				var cmdID = T.attr('id').replace(/^cyclist-/, '');
+				C.cyclist(cmdID);
 			});
 		}
 
