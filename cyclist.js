@@ -55,7 +55,6 @@
 				baseURL:	baseURL,
 				index:		0,
 				nItems:		0,
-				root:		T[0],
 				pane:		null
 			};
 			// use localstorage if jStorage found
