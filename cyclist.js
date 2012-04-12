@@ -55,18 +55,29 @@
 				baseURL:	baseURL,
 				index:		0,
 				nItems:		0,
-				root:		T,
+				root:		T[0],
 				pane:		null
 			};
+			// use localstorage if jStorage found
+			if ($.jStorage) {
+				tdata = $.jStorage.get('clickcyclist.data');
+				if (tdata) {
+					data = tdata;
+				}
+			}
 			T.data('cyclist', data);
 			T.html('<div class="A" style="position: absolute; left: 0; top: 0; z-index: 10"></div><div class="B" style="position: absolute; left: 0; top: 0; z-index:0;"></div>');
 			data.pane = $('div.A', T);
+			if (data.items && data.items.length) {
+				loadNew(T, data, ich[options.template](data.items[data.index]), {enabled: false});
+				return;
+			}
 			$.getJSON(baseURL + '/count', function(count, status, xhr) {
 				T.data('cyclist').nItems = count;
 				$.getJSON(baseURL + '/fetch?limit=' + options.perPage + '&start=' + options.start , function(items, status, xhr) {
 					data.items = items;
 					if (data.items && data.items.length) {
-						loadNew(T, data, ich[options.template](data.items[0]), {enabled: false});
+						loadNew(T, data, ich[options.template](data.items[data.index]), {enabled: false});
 					}
 				});
 			});
@@ -102,6 +113,11 @@
 			} else {
 				elts[1].css(oldcm);
 				elts[0].css(newcm);
+			}
+			// use localstorage if jStorage found
+			if ($.jStorage) {
+				console.log(data);
+				$.jStorage.set('clickcyclist.data', data);
 			}
 		}
 
