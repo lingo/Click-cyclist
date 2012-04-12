@@ -66,6 +66,7 @@
 			}
 			T.data('cyclist', data);
 			T.html('<div class="A" style="position: absolute; left: 0; top: 0; z-index: 10"></div><div class="B" style="position: absolute; left: 0; top: 0; z-index:0;"></div>');
+			ich.grabTemplates(); // just in case
 			data.pane = $('div.A', T);
 			if (data.items && data.items.length) {
 				loadNew(T, data, ich[options.template](data.items[data.index]), {enabled: false});
