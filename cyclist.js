@@ -66,7 +66,7 @@
 				$.getJSON(baseURL + '/fetch?limit=' + options.perPage + '&start=' + options.start , function(items, status, xhr) {
 					data.items = items;
 					if (data.items && data.items.length) {
-						loadNew(T, data, ich[options.template](data.items[0]));
+						loadNew(T, data, ich[options.template](data.items[0]), {enabled: false});
 					}
 				});
 			});
@@ -80,7 +80,8 @@
 			var defaults = {
 				prop: 'left',
 				margin: 10,
-				direction: 1
+				direction: 1,
+				enabled: true
 			};
 			if (typeof(anim) == 'undefined') {
 				anim = defaults;
@@ -95,8 +96,13 @@
 			var newcm = {}; newcm[prop] = newd.final;
 			var oldcm = {}; oldcm[prop] = oldd.final;
 			data.pane = elts[0][0].className;
-			elts[1].animate(oldcm, {duration: 1000, queue: false});
-			elts[0].animate(newcm, {duration: 1000, queue: false});
+			if (anim.enabled) {
+				elts[1].animate(oldcm, {duration: 1000, queue: false});
+				elts[0].animate(newcm, {duration: 1000, queue: false});
+			} else {
+				elts[1].css(oldcm);
+				elts[0].css(newcm);
+			}
 		}
 
 		function getAnimPair(data, T) {
