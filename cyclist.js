@@ -115,7 +115,6 @@
 			}
 			// use localstorage if jStorage found
 			if ($.jStorage) {
-				console.log(data);
 				$.jStorage.set('clickcyclist.data', data);
 			}
 		}
