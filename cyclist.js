@@ -43,7 +43,7 @@
 			perPage:		10,		// How many items to request from AJAX at once
 			baseURL:		null,	// AJAX baseURL, must be set in options or provided in data-baseurl attribute
 			start:			0,		// Offset for start of paging queries.
-			template:		'slide',// Template identifier for use with Mustache templates.
+			template:		'slide' // Template identifier for use with Mustache templates.
 		};
 	
 		function initialize(T, data) {
@@ -183,7 +183,7 @@
 		var func = null;
 		var methods = {
 			'prev':		method_prev,
-			'next':		method_next,
+			'next':		method_next
 		};
 
 		if (typeof(options) == 'string') {
