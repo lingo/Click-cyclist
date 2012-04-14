@@ -70,6 +70,9 @@
 			data.pane = $('div.A', T);
 			if (data.items && data.items.length) {
 				loadNew(T, data, ich[options.template](data.items[data.index]), {enabled: false});
+				if (data.items.length > 1) {
+					addPagerButtons(T);
+				}
 				return;
 			}
 			$.getJSON(baseURL + '/count', function(count, status, xhr) {
@@ -78,6 +81,9 @@
 					data.items = items;
 					if (data.items && data.items.length) {
 						loadNew(T, data, ich[options.template](data.items[data.index]), {enabled: false});
+						if (data.items.length > 1) {
+							addPagerButtons(T);
+						}
 					}
 				});
 			});
@@ -198,7 +204,6 @@
 			var data = T.data('cyclist');
 			if (!data) {
 				initialize.apply(this, [T]);
-				addPagerButtons(T);
 			}
 			if (func) {
 				func.apply(T, [data]);
