@@ -70,15 +70,20 @@
 			data.pane = $('div.A', T);
 			if (data.items && data.items.length) {
 				loadNew(T, data, ich[options.template](data.items[data.index]), {enabled: false});
-				if (data.items.length > 1) {
-					addPagerButtons(T);
-				}
-				return;
 			}
-			$.getJSON(baseURL + '/count', function(count, status, xhr) {
-				T.data('cyclist').nItems = count;
+			$.getJSON(baseURL + '/count', function(jdata, status, xhr) {
+				var count = jdata.count;
+				var data = T.data('cyclist');
+				data.nItems = count;
+				if (data.nItems == count && data.lastmod >= jdata.lastmod) {
+					if (data.items.length > 1) {
+						addPagerButtons(T);
+					}
+					return;
+				}
 				$.getJSON(baseURL + '/fetch?limit=' + options.perPage + '&start=' + options.start , function(items, status, xhr) {
-					data.items = items;
+					data.items = items.items;
+					data.lastmod = items.lastmod;
 					if (data.items && data.items.length) {
 						loadNew(T, data, ich[options.template](data.items[data.index]), {enabled: false});
 						if (data.items.length > 1) {
