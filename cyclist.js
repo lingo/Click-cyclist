@@ -65,7 +65,7 @@
 				}
 			}
 			T.data('cyclist', data);
-			T.html('<div class="A" style="position: absolute; left: 0; top: 0; z-index: 10"></div><div class="B" style="position: absolute; left: 0; top: 0; z-index:0;"></div>');
+			T.html('<div class="A cyclist-pane" style="position: absolute; left: 0; top: 0; z-index: 10"></div><div class="B cyclist-pane" style="position: absolute; left: 0; top: 0; z-index:0;"></div>');
 			ich.grabTemplates(); // just in case
 			data.pane = $('div.A', T);
 			if (data.items && data.items.length) {
@@ -117,7 +117,10 @@
 			elts[0].css(prop, newd.init);
 			var newcm = {}; newcm[prop] = newd.final;
 			var oldcm = {}; oldcm[prop] = oldd.final;
-			data.pane = elts[0][0].className;
+			// update current pane.
+			data.pane = elts[0][0].className.split(/\s+/);
+			data.pane.splice($.inArray('cyclist-pane', data.pane), 1);
+			data.pane = data.pane[0];
 			if (anim.enabled) {
 				elts[1].animate(oldcm, {duration: 1000, queue: false});
 				elts[0].animate(newcm, {duration: 1000, queue: false});
