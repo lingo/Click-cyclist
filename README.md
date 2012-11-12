@@ -63,3 +63,12 @@ Usage
 External code
 -------------
 Uses [ICanHazJS](http://icanhazjs.com/) for templating HTML. 
+
+
+Notes for purists
+------------------
+
+I have used the term RESTish here, as this is far from a 'proper' REST interface,
+yet superficially resembles aspects of REST.
+
+To be more RESTy, we should use nouns instead of verbs, and support HTTP verbs better.
